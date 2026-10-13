@@ -53,7 +53,7 @@ The training data provides examples from which the model can learn patterns. The
 
 **Parameters** are learned numerical values inside a model. During training, an optimization process adjusts these values to improve performance according to the training objective.
 
-For a neural network, parameters commonly include weights and biases.
+For a neural network, parameters commonly include **weights and biases**.
 
 Conceptually:
 
@@ -109,7 +109,7 @@ Ordinary inference does not normally update the model's learned parameters.
 
 <br/>
 
-### 4.1 Inference Is Not the Same as Training
+### 4.1 Inference VS Training
 
 | Aspect | Training | Inference |
 |---|---|---|
@@ -272,31 +272,15 @@ A product may provide persistent memory or retrieve past conversations through a
 
 The following diagram shows a typical high-level lifecycle.
 
-```text
-Training data
-     |
-     v
-Training objective + optimization
-     |
-     v
-Learned model parameters
-     |
-     v
-Trained model available for use
-     |
-     v
-Application prepares a request
-(prompt + relevant context)
-     |
-     v
-Inference
-     |
-     v
-Model output
-(generated content or prediction)
-     |
-     v
-Application validation and response
+```mermaid
+flowchart TD
+    A[Training data] --> B[Training objective + optimization]
+    B --> C[Learned model parameters]
+    C --> D[Trained model available for use]
+    D --> E["Application prepares a request<br/>(prompt + relevant context)"]
+    E --> F[Inference]
+    F --> G["Model output<br/>(generated content or prediction)"]
+    G --> H[Application validation and response]
 ```
 
 <br/>

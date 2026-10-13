@@ -121,7 +121,7 @@ Do not select a temperature solely from a generic rule. Test the setting against
 
 ## 5. Sampling Controls: Top-p and Related Ideas
 
-Some model APIs expose additional sampling controls. One common example is **top-p sampling**, also called nucleus sampling.
+Some model APIs expose additional sampling controls. One common example is **top-p sampling**, also called **nucleus sampling**.
 
 Conceptually, top-p sampling limits the candidate set to tokens whose combined probability reaches a chosen cumulative probability threshold, and then samples from that set. The exact implementation and interaction with other controls depend on the system.
 

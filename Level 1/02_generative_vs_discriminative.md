@@ -17,22 +17,9 @@ After completing this chapter, you should be able to:
 
 Machine learning models can learn different kinds of patterns from data. Two useful conceptual categories are **generative models** and **discriminative models**.
 
-### 2.1 Generative Models
+![alt text](images/generative-vs-discriminative.png)
 
-A **generative model** learns patterns or structure in data and can use what it has learned to generate new examples or content.
-
-Examples include:
-
-- Generating an email from a short instruction.
-- Creating an image from a text description.
-- Producing speech from written text.
-- Generating a continuation of a text sequence.
-
-The output is newly generated content, rather than only a label or numerical prediction.
-
-<br/>
-
-### 2.2 Discriminative Models
+### 2.1 Discriminative Models
 
 A **discriminative model** learns to distinguish between classes or predict a target from input features.
 
@@ -45,7 +32,186 @@ Examples include:
 
 A discriminative model often produces a class label, a probability or score, or a numerical prediction.
 
+<br/>
+
+---
+
+### Theory:
+
+A discriminative model focuses entirely on drawing boundaries between different classes of data. Instead of trying to understand *how* the data was created (which is what generative models do), it asks a direct, practical question: "Given this specific input, what is the probability it belongs to a certain category?"
+
+Here is the step-by-step breakdown of how a discriminative model (like Logistic Regression or a Neural Network) uses conditional probability at the backend to learn and make predictions.
+
+<br/>
+
+![alt text](images/discriminant.png)
+
+<br/>
+
+#### Step 1: The Core Objective — $P(Y\vert{}X)$
+
+The entire foundation of a discriminative model rests on **conditional probability**, written mathematically as $P(Y\vert{}X)$.
+
+* **$X$** represents your input data (the features, like pixels in an image or words in an email).
+* **$Y$** represents the target label (the category, like "Cat" or "Spam").
+* **$P(Y\vert{}X)$** reads as: "The probability of outcome $Y$ *given* the evidence $X$."
+
+The model's sole job is to calculate this exact probability directly.
+
+<br/>
+
+#### Step 2: The Linear Backend (Weights and Biases)
+
+Before the model can calculate a probability, it needs to process the raw input data. It assigns an importance factor (**weight**, $W$) to every feature in $X$, and adds a baseline offset (**bias**, $b$).
+
+Internally, it calculates a raw score (often called $z$ or logits):
+
+
+$$z = W \cdot X + b$$
+
+At this stage, $z$ is just a raw number that can range from negative infinity to positive infinity. It is not yet a probability.
+
+<br/>
+
+#### Step 3: Squashing into Probabilities (The Activation Function)
+
+To turn the raw score $z$ into a valid conditional probability $P(Y\vert{}X)$—which must be a number strictly between 0 and 1—the model passes $z$ through a mathematical "squashing" function.
+
+For binary classification (two classes, like Spam vs. Not Spam), it uses the **Sigmoid function**:
+
+
+$$P(Y=1\vert{}X) = \frac{1}{1 + e^{-z}}$$
+
+For multi-class classification (like classifying images of cats, dogs, and birds), it uses the **Softmax function**, which ensures the probabilities of all possible classes add up to exactly 1:
+
+
+$$P(Y=k\vert{}X) = \frac{e^{z_k}}{\sum_{i} e^{z_i}}$$
+
+<br/>
+
+#### Step 4: Measuring the Error (Cross-Entropy Loss)
+
+During training, the model needs to know if its calculated probabilities are actually correct. It compares its predicted $P(Y\vert{}X)$ against the actual truth.
+
+If an email is actually spam ($Y=1$), the model *should* predict $P(Y=1\vert{}X) \approx 1.0$. If the model predicts $0.1$, it has made a huge error. To quantify this, the backend uses a loss function, typically **Log Loss (Cross-Entropy)**.
+
+For a single data point in binary classification, the backend calculates:
+
+
+$$Loss = - [y \log(P(Y=1\vert{}X)) + (1 - y) \log(1 - P(Y=1\vert{}X))]$$
+
+
+This formula heavily penalizes the model if it is highly confident in the wrong answer.
+
+<br/>
+
+#### Step 5: Learning and Adjusting (Maximum Likelihood)
+
+The backend's ultimate goal is **Maximum Likelihood Estimation (MLE)**. It wants to find the exact set of weights ($W$) that makes the known training data as probable as possible.
+
+To do this, it uses an optimization algorithm like **Gradient Descent**. The model calculates the derivative (gradient) of the loss with respect to the weights. It then slightly adjusts the weights in the opposite direction of the gradient to reduce the error:
+
+1. If $P(Y\vert{}X)$ was too low for the correct class, it tweaks $W$ to increase it next time.
+2. It repeats this loop across thousands of examples until the probabilities are highly accurate.
+
+<br/>
+
+#### Step 6: Inference (Making the Final Decision)
+
+Once training is complete and the weights are locked, you feed the model a brand new piece of data.
+
+1. It computes $z = W \cdot X + b$.
+2. It runs $z$ through Sigmoid/Softmax to get $P(Y\vert{}X)$.
+3. **The Decision Rule:** It sets a threshold to make a final choice. If $P(Y=\text{Spam}\vert{}X) > 0.5$, it classifies the email as Spam. The boundary where $P(Y\vert{}X) = 0.5$ is literally the decision boundary separating the classes.
+
+---
+
+<br/>
+
+### 2.2 Generative Models
+
+A **generative model** learns patterns or structure in data and can use what it has learned to generate new examples or content.
+
+Examples include:
+
+- Generating an email from a short instruction.
+- Creating an image from a text description.
+- Producing speech from written text.
+- Generating a continuation of a text sequence.
+
+The output is newly generated content, rather than only a label or numerical prediction.
+
+
 > **Important:** These categories describe modeling approaches, not an absolute rule about every task a model can perform. A generative model can be prompted to classify, and some generative models can also be used to estimate or score inputs.
+
+<br/>
+
+---
+### Theory
+
+While a discriminative model draws a boundary to separate data, a **generative model** tries to understand the underlying blueprint of how the data was created in the first place. Instead of asking, "Given this image, is it a cat or a dog?", it asks, "What are the core characteristics that make an image a cat?"
+
+Here is the step-by-step breakdown of how a generative model (like Naive Bayes, GANs, or Diffusion models) uses joint probability at the backend.
+
+<br/>
+
+![alt text](images/genai-cat.png)
+
+<br/>
+
+#### Step 1: The Core Objective — $P(X, Y)$
+
+The foundation of a generative model is **joint probability**, written as $P(X, Y)$.
+
+* **$X$** represents the input features (e.g., the pixels of an image).
+* **$Y$** represents the class label (e.g., "Cat").
+* **$P(X, Y)$** reads as: "What is the probability of these specific pixels occurring *alongside* the label 'Cat'?"
+
+Instead of just looking at $X$ to predict $Y$, the model wants to map out the entire universe of both $X$ and $Y$ existing together.
+
+<br/>
+
+#### Step 2: Breaking it Down (The Likelihood and Prior)
+
+To calculate the joint probability, the backend splits the problem into two distinct parts using the rules of probability:
+
+
+$$P(X, Y) = P(X\vert{}Y) \cdot P(Y)$$
+
+1. **The Prior $P(Y)$:** How common is this class overall? (e.g., Are 30% of all our training images cats?)
+2. **The Likelihood $P(X\vert{}Y)$:** This is the magic of generative AI. It asks: "Assuming we *know* we are looking at a cat, what is the probability distribution of its pixels?" It learns the typical colors, shapes, and textures associated strictly with cats.
+
+<br/>
+
+#### Step 3: Learning the Distribution (Training)
+
+During training, the generative model doesn't just tweak weights to minimize a classification error. It attempts to mathematically capture the **distribution** of the data.
+
+If the model is learning what a "cat" looks like, it calculates the mean and variance (the average look and how much it varies) of every pixel across all cat images. For complex modern AI like Diffusion models or GANs, this means mapping a massive, high-dimensional probability landscape where realistic cat images exist in "high probability" zones, and random static exists in "low probability" zones.
+
+<br/>
+
+#### Step 4: Making Decisions (Using Bayes' Theorem)
+
+If you want to use a generative model to classify a new image, it calculates the joint probability $P(X, Y)$ for all possible labels.
+
+To make the final classification, it converts those joint probabilities back into a conditional probability $P(Y\vert{}X)$ using **Bayes' Theorem**:
+
+
+$$P(Y\vert{}X) = \frac{P(X\vert{}Y) \cdot P(Y)}{P(X)}$$
+
+
+It essentially asks: "Did this image more likely come from my internal mathematical model of a Cat, or my internal model of a Dog?"
+
+<br/>
+
+#### Step 5: The Ultimate Power — Generation
+
+Because the model has mapped the likelihood $P(X\vert{}Y)$, it can do something a discriminative model cannot: **create brand new data**.
+
+If you ask the model to generate a cat, it fixes $Y = \text{"Cat"}$. It then goes to its learned distribution for $P(X\vert{}Y=\text{"Cat"})$ and mathematically samples a random point from the high-probability region of that space. The result is a brand new configuration of features $X$ (an image of a cat) that did not exist in the training data, but perfectly fits the statistical rules of what a cat should look like.
+
+---
 
 <br/>
 

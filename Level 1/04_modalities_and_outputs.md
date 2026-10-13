@@ -17,6 +17,9 @@ After completing this chapter, you should be able to:
 
 A **modality** is a type or form of information that an AI system can receive, process, or produce.
 
+
+![alt text](images/modalities.png)
+
 Common modalities include:
 
 - **Text:** Words, sentences, documents, prompts, and code.
@@ -85,6 +88,16 @@ The application supplies text instructions and receives generated text.
 
 **Important:** The model's output should still be checked when factual accuracy, formatting, or tone matters.
 
+### model
+
+| Model name | Company | Link of website |
+|---|---|---|
+| GPT-6 Astra | OpenAI | https://developers.openai.com/api/docs/models |
+| Claude Opus 5.5 | Anthropic | https://platform.claude.com/docs/en/models/overview |
+| Claude Sonnet 5.5 | Anthropic | https://platform.claude.com/docs/en/models/overview |
+| Gemini models | Google | https://ai.google.dev/gemini-api/docs/models |
+| Mistral models | Mistral AI | https://docs.mistral.ai/getting-started/models/ |
+
 <br/>
 
 ## 5. Image Generation and Image Understanding
@@ -101,6 +114,16 @@ Example:
 - **Output:** A newly generated image.
 
 Common uses include concept art, illustrations, design exploration, and visual content creation.
+
+### model
+
+| Model name | Company | Link of website |
+|---|---|---|
+| GPT Image | OpenAI | https://developers.openai.com/api/docs/guides/image-generation |
+| Nano Banana (Gemini image generation models) | Google | https://ai.google.dev/gemini-api/docs/image-generation |
+| Midjourney V8.2 | Midjourney | https://docs.midjourney.com/hc/en-us/articles/32199405667853-Version |
+| FLUX.2 | Black Forest Labs | https://bfl.ai/models |
+| Stable Diffusion | Stability AI | https://stability.ai/stable-diffusion |
 
 <br/>
 
@@ -176,6 +199,16 @@ Output: An audio clip speaking those words.
 
 The system generates audio from text.
 
+### model
+
+| Model name | Company | Link of website |
+|---|---|---|
+| GPT-4o mini TTS | OpenAI | https://developers.openai.com/api/docs/guides/text-to-speech |
+| Eleven v4 | ElevenLabs | https://elevenlabs.io/docs/overview/models |
+| Chirp 3: HD voices | Google Cloud | https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd |
+| Azure AI Speech text-to-speech | Microsoft | https://learn.microsoft.com/en-us/azure/ai-services/speech-service/text-to-speech |
+| Amazon Polly neural voices | Amazon Web Services | https://aws.amazon.com/polly/ |
+
 <br/>
 
 ### 6.3 Audio Understanding and Audio Generation
@@ -183,6 +216,17 @@ The system generates audio from text.
 Audio understanding can include identifying sounds, transcribing speech, or answering questions about a recording. Audio generation can include synthesizing speech, music, or sound effects.
 
 These capabilities are related, but they are not interchangeable. A transcription model may not be able to synthesize natural speech, and a speech-generation model may not be designed to transcribe recordings.
+
+### models
+
+| Model name | Company | Link of website |
+|---|---|---|
+| MusicGen | Meta | https://ai.meta.com/resources/models-and-libraries/audiocraft/ |
+| AudioGen | Meta | https://ai.meta.com/resources/models-and-libraries/audiocraft/ |
+| Stable Audio | Stability AI | https://stableaudio.com/ |
+| ElevenLabs Text to Sound | ElevenLabs | https://elevenlabs.io/docs/overview/models |
+| Lyria | Google | https://deepmind.google/technologies/lyria/ |
+
 
 <br/>
 
@@ -220,6 +264,15 @@ Examples include:
 **Input:** A text prompt, and optionally an image or other supported conditioning input.
 
 **Output:** A generated video clip.
+
+### model
+
+| Model name | Company | Link of website |
+|---|---|---|
+| Veo 3.1 | Google DeepMind | https://deepmind.google/technologies/veo/ |
+| Runway Gen-4.5 | Runway | https://runwayml.com/ |
+| Kling AI video models | Kuaishou | https://klingai.com/ |
+| Sora 2 | OpenAI | https://developers.openai.com/api/docs/models |
 
 <br/>
 
@@ -356,6 +409,18 @@ def square(number: float) -> float:
 ```
 
 Generated code is still model output. It should be reviewed and tested, particularly before use in production or with sensitive data.
+
+### model
+
+| Model name | Company | Link of website |
+|---|---|---|
+| GPT Codex models | OpenAI | https://developers.openai.com/api/docs/models |
+| Claude models (coding) | Anthropic | https://platform.claude.com/docs/en/models/overview |
+| Gemini models (coding) | Google | https://ai.google.dev/gemini-api/docs/models |
+| Codestral | Mistral AI | https://mistral.ai/news/codestral |
+| Qwen Coder models | Alibaba / Qwen | https://qwenlm.github.io/ |
+| GitHub Copilot supported models | GitHub (multiple model providers) | https://docs.github.com/en/copilot/reference/ai-models/supported-models |
+
 
 <br/>
 

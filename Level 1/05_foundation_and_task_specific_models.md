@@ -67,6 +67,18 @@ For example, a model may accept text and images and answer questions about a pho
 
 Multimodal capability is not universal. A model that understands images does not necessarily generate images, and a model that processes audio does not necessarily support every audio task.
 
+#### Models
+
+| Model name | Company | Link of website |
+|---|---|---|
+| Gemini 3.8 Flash | Google | https://ai.google.dev/gemini-api/docs/models |
+| GPT-4o | OpenAI | https://developers.openai.com/api/docs/models/gpt-4o |
+| GPT-Realtime models | OpenAI | https://developers.openai.com/api/docs/models |
+| Claude models with vision capabilities | Anthropic | https://platform.claude.com/docs/en/build-with-claude/vision |
+| Llama 4 Scout | Meta | https://ai.meta.com/llama/ |
+| Llama 4 Maverick | Meta | https://ai.meta.com/llama/ |
+| Qwen3-VL | Alibaba / Qwen | https://qwen.ai/ |
+
 <br/>
 
 ## 4. What Is a Task-Specific Model?
@@ -84,6 +96,35 @@ Examples include:
 Task-specific models may be smaller and simpler than broad foundation models, although this is not a universal rule.
 
 They often return a defined output such as a class label, score, or numerical prediction. Their narrow scope can make them easier to evaluate and integrate into a specific workflow.
+
+#### Models
+
+| Model name | Company | Link of website |
+|---|---|---|
+| BERT | Google Research | https://github.com/google-research/bert |
+| RoBERTa | Meta AI | https://huggingface.co/FacebookAI/roberta-base |
+| DistilBERT | Hugging Face / DistilBERT contributors | https://huggingface.co/distilbert/distilbert-base-uncased |
+| DeBERTa | Microsoft Research | https://huggingface.co/microsoft/deberta-v3-base |
+| YOLO | Ultralytics | https://docs.ultralytics.com/ |
+| Segment Anything Model (SAM 2) | Meta AI | https://ai.meta.com/sam2/ |
+| Whisper | OpenAI | https://github.com/openai/whisper |
+| wav2vec 2.0 | Meta AI | https://huggingface.co/facebook/wav2vec2-base-960h |
+| NLLB-200 | Meta AI | https://github.com/facebookresearch/fairseq/tree/nllb |
+| E5 embedding models | Microsoft Research | https://huggingface.co/intfloat/e5-base-v2 |
+| BGE embedding models | BAAI | https://huggingface.co/BAAI/bge-large-en-v1.5 |
+| LayoutLMv3 | Microsoft Research | https://huggingface.co/microsoft/layoutlmv3-base |
+
+#### Models by task
+
+| Task | Example model | Typical use |
+|---|---|---|
+| Text classification | BERT, RoBERTa, DistilBERT, DeBERTa | Sentiment analysis, intent classification, document categorization |
+| Object detection | YOLO | Detecting and locating objects in images or video frames |
+| Image segmentation | SAM 2 | Identifying object regions or masks in images and video |
+| Speech recognition (ASR) | Whisper, wav2vec 2.0 | Converting spoken audio into text |
+| Machine translation | NLLB-200 | Translating text across supported languages |
+| Text embeddings | E5, BGE | Semantic search, retrieval, clustering, and similarity |
+| Document understanding | LayoutLMv3 | Extracting information from documents that combine text and layout |
 
 <br/>
 
@@ -188,6 +229,19 @@ Retrieval can help provide information that is specific to an organization or mo
 
 Retrieval is useful when answers need to be grounded in documents, databases, or other knowledge sources that can change over time.
 
+```mermaid
+flowchart TD
+    A[Customer asks a warranty question] --> B[Customer-support application]
+    B --> C[Search external knowledge source]
+    C --> D[Latest warranty policy]
+    D --> E[Retrieve relevant passage]
+    E --> F[Combine passage with customer question]
+    F --> G[Send question and context to language model]
+    G --> H[Generate a grounded answer]
+    H --> I[Validate answer against the policy]
+    I --> J[Respond to customer]
+```
+
 <br/>
 
 ### 7.3 Fine-Tuning
@@ -235,6 +289,13 @@ Evaluate how well the model performs on representative examples from the actual 
 ### 8.3 Latency and Throughput
 
 A larger model may take longer to respond or require more compute. For an application that processes thousands of simple requests, response time and throughput may matter substantially.
+
+
+#### Throughput vs. Latency
+
+- Throughput measures volume over time (how many total dishes a kitchen cooks per minute).
+- Latency measures time delay per single unit (how long it takes to cook one specific dish).
+- The Trade-Off: Increasing batch sizes or concurrent users raises aggregate throughput by utilizing hardware better, but can temporarily increase per-user latency.
 
 <br/>
 

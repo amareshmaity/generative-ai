@@ -21,6 +21,8 @@ Artificial Intelligence (AI) is a field of computer science focused on building 
 
 These tasks include learning, reasoning, recognizing patterns, understanding language, solving problems, and making predictions.
 
+![alt text](images/ai.png)
+
 Examples of AI applications include:
 
 - Spam detection in email.
@@ -36,6 +38,8 @@ AI is the broad field that includes several approaches, such as rule-based syste
 ## 3. AI vs Machine Learning vs Deep Learning vs Generative AI
 
 These terms are related, but they do not mean the same thing.
+
+![alt text](images/ai-vs-ml-dl-genai.png)
 
 ### Artificial Intelligence (AI)
 
@@ -75,6 +79,8 @@ Conceptual relationship: Generative AI commonly uses deep learning, but not ever
 
 Machine Learning enables computers to learn patterns from examples and use those patterns to make predictions or decisions.
 
+![alt text](images/ml.png)
+
 For example, a house-price prediction model learns relationships between features such as area, location, and number of rooms and the corresponding prices.
 
 Its output might be a numerical prediction:
@@ -86,6 +92,8 @@ Its output might be a numerical prediction:
 ### 3.2 Deep Learning
 
 Deep Learning uses neural networks containing multiple layers. These networks can learn increasingly complex representations from data.
+
+![alt text](images/dl.png)
 
 Deep learning is widely used in:
 
@@ -100,6 +108,8 @@ Deep learning is widely used in:
 ### 3.3 Generative AI
 
 Generative AI focuses on producing content rather than only assigning labels or predicting values.
+
+![alt text](images/genai.png)
 
 It can generate:
 
@@ -139,15 +149,15 @@ The model does not simply retrieve a prewritten answer in every case. It generat
 
 ### 4.1 What does “learning patterns during training” mean?
 
-During training, a model processes training examples and adjusts its parameters according to a training objective.
+During training, a model processes training examples and adjusts its parameters according to a training objective (cost function).
 
 For a language model, one important training objective is predicting the next token in a sequence.
 
-Through training, the model can learn statistical and semantic patterns involving grammar, word relationships, concepts, and other regularities present in the data.
+Through training, the model can learn **statistical and semantic patterns** involving grammar, word relationships, concepts, and other regularities present in the data.
 
 When the model is later given a prompt, it uses its learned parameters to produce an output.
 
-Important: Learning patterns does not mean the model automatically stores every training example as a searchable record or understands every concept in the same way a human does.
+**Important:** Learning patterns does not mean the model automatically stores every training example as a searchable record or understands every concept in the same way a human does.
 
 <br/>
 
@@ -162,7 +172,9 @@ These are fundamental components of a Generative AI system.
 | Model     | A trained computational system that processes inputs and produces predictions or generated content | A large language model                             |
 | Output    | The result produced by the model or returned by the application                                    | A three-bullet summary                             |
 
-A prompt can include the task instructions, source content, desired format, and other relevant context. A prompt is not necessarily just a question.
+<br/>
+
+A prompt can include the **task instructions, source content, desired format, and other relevant context**. A prompt is not necessarily just a question.
 
 <br/>
 
@@ -240,29 +252,17 @@ The actual wording of the output may vary between requests.
 
 <br/>
 
-### 6.4 What happens in this example?
+**Note:**
 
-Input / prompt
+This example demonstrates **inference and generation**. It does not train the model.
 
-Explain Generative AI to a beginner in three bullet points.
-
-Model
-
-A hosted language model processes the prompt and generates text.
-
-Output
-
-A generated explanation containing three bullet points, if the model follows the instruction.
-
-This example demonstrates inference and generation. It does not train the model.
-
-Also, asking for three bullet points does not guarantee exactly three bullet points. If that requirement is important, validate the output or use a suitable structured-output mechanism.
+Also, asking for three bullet points **does not guarantee** exactly three bullet points. If that requirement is important, validate the output or use a suitable structured-output mechanism.
 
 <br/>
 
 ## 7. A Model Is Not the Same as a Complete Application
 
-A model is the trained component that processes inputs and produces outputs. A Generative AI application combines the model with software components that make it useful for a particular task.
+A model is the trained component that processes inputs and produces outputs. A Generative AI application **combines the model with software components** that make it useful for a particular task.
 
 For example, consider an AI-powered PDF question-answering application.
 
@@ -308,7 +308,6 @@ Generative AI can produce responses that are clear, grammatically correct, persu
 
 This is because fluency and factual correctness are different properties.
 
-<br/>
 
 ### 8.1 Common reasons
 
@@ -364,7 +363,6 @@ No single prompt or validation technique eliminates every possible failure.
 
 Consider these three generative applications.
 
-[Context-Aware Writing Tips for Professionals | Revise AI](https://images.openai.com/static-rsc-4/nhJ0fuctnX377BJ8nEJe2XgcV5ki9b1uSFIXsagR_gM97QD-0QzLqJyOWnDVDd6xIvKouQdw7V3rWdjjEUJRfvDyhyInWkRr4hqtb71yuwSYDbpeFtPFnK1Vgq-aZOjuwtxeicPAeyH6Bw4ni5HaQVT0Ce5YfUEOvEalxu914EM?purpose=inline)
 
 ### Application 1: Email Drafting Assistant
 
@@ -372,8 +370,7 @@ Consider these three generative applications.
 - Model task: Generate a suitable email draft.
 - Output: Email subject and body.
 - Validation: Check tone, factual details, and recipient information before sending.
-
-[AI Image Generator from Text Free: Create Stunning Images at No Cost](https://images.openai.com/static-rsc-4/deQDX--uOOrmhpmkHqj1oAEzlTu_tRnRgbzSwDZg-8gIcUTiR5bOJHV6FVgjZhrNlMd_aHmSgwKAf9F3qpg0g0Pxa2jJcdi7bHANFyjjpX8E3m4fgj30oMrZWGoXhPfFmOearf3oXHfrC5l3RXdX6hNe2YvTu56rvf3-H0giznk?purpose=inline)
+- Example website: [Grammarly](https://www.grammarly.com/) — AI-assisted writing and email drafting.
 
 ### Application 2: Image Generation
 
@@ -381,8 +378,7 @@ Consider these three generative applications.
 - Model task: Generate an image that reflects the prompt.
 - Output: A generated image.
 - Validation: Check visual quality, prompt adherence, and applicable usage rights.
-
-[WhisperAI](https://images.openai.com/static-rsc-4/xatt0szD_wDWVf-xShCKDVrk-uvI4QUFnjVw3MwkNVQlIOpha3Op8rxb8EpywqnpzJkEzRP9Q07Kr6yhsaf17mXKm9o7jB4rEhv5fAjG4bJSDY1XwVZHDRYA9OQ56xfdJ-RBwCZj8Ie4RnhafP5IFpFoVKX4bj85qFP4o_AMm8M?purpose=inline)
+- Example website: [OpenAI Image Generation](https://openai.com/index/introducing-4o-image-generation/) — generating images from text prompts.
 
 ### Application 3: Text-to-Speech
 
@@ -390,22 +386,8 @@ Consider these three generative applications.
 - Model task: Generate speech from the text.
 - Output: An audio file or audio stream.
 - Validation: Check pronunciation, intelligibility, and whether the spoken content matches the input.
+- Example website: [ElevenLabs Text-to-Speech](https://elevenlabs.io/text-to-speech) — converting written text into natural-sounding speech.
 
-### Exercise
-
-Try identifying the components for a fourth application: a tool that converts a long report into a short executive summary.
-
-Input
-
-Prompt
-
-Summarize the report for an executive in 5 bullet points.
-
-Expected output
-
-A concise executive summary
-
-Copy my answer
 
 <br/>
 
@@ -472,4 +454,4 @@ You should now be able to explain Generative AI in your own words using one conc
 
 > Generative AI is a type of AI that can create content based on patterns learned during training. An email drafting assistant is one example: it takes a user's instructions and relevant context, processes them with a trained language model, and generates an email draft. The surrounding application can validate the result, but the draft should still be reviewed because a fluent response is not necessarily correct.
 
-Next chapter: 02. Generative versus Discriminative Models.
+Next chapter: [02. Generative versus Discriminative Models.](./02_generative_vs_discriminative.md)

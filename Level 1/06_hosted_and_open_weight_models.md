@@ -31,13 +31,49 @@ These choices are related, but they are not interchangeable.
 
 ## 2. Hosted Inference
 
-**Hosted inference** means a provider runs the model infrastructure and exposes model functionality through a service, commonly an API.
+**Hosted inference** means a provider runs the model infrastructure and exposes model functionality through a service, commonly an **API**.
 
 Your application sends an input to the service and receives a response. The provider manages the underlying serving infrastructure, although you still need to manage your application, credentials, usage, and integration.
 
 <br/>
 
 ### Typical request flow
+
+```mermaid
+flowchart LR
+    %% Client / application layer
+    subgraph APP["Application Layer"]
+        direction TB
+        A["🧩 Prepare Request<br/>Prompt + context + parameters"]
+        B["🛡️ Validate Output<br/>Schema + business rules"]
+        C["⚙️ Use Result<br/>Return response or trigger action"]
+        A -->|"1. Build input"| D
+        B -->|"4. Valid result"| C
+    end
+
+    %% Provider layer
+    subgraph PROVIDER["Model Provider"]
+        direction TB
+        D["🌐 API Endpoint<br/>HTTPS request"]
+        E["🧠 Inference Service<br/>Model execution"]
+        F["📦 Response Payload<br/>Generated output"]
+        D -->|"2. Forward request"| E
+        E -->|"3. Run inference"| F
+    end
+
+    F -->|"Return output"| B
+
+    %% Error path
+    B -.->|"Invalid / incomplete"| G["🔁 Retry, repair, or fail safely"]
+    G -.->|"If retry is allowed"| A
+
+    classDef app fill:#E8F1FF,stroke:#2563EB,color:#172554,stroke-width:1.5px;
+    classDef provider fill:#E9F9EF,stroke:#16A34A,color:#14532D,stroke-width:1.5px;
+    classDef guard fill:#FFF4E5,stroke:#D97706,color:#7C2D12,stroke-width:1.5px;
+    class A,B,C app;
+    class D,E,F provider;
+    class G guard;
+```
 
 1. The application prepares a prompt or other model input.
 2. It sends a request to the provider's endpoint.
@@ -82,6 +118,19 @@ Downloading weights does not automatically provide everything needed for deploym
 - Security, monitoring, scaling, and update procedures.
 - A plan for handling prompts, outputs, logs, and user data.
 
+
+#### Model repositories and platforms
+
+| Platform         | Website                                                | Purpose                                                                                                        |
+| ---------------- | ------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- |
+| Hugging Face Hub | [huggingface.co/models](https://huggingface.co/models) | Browse and download model weights, tokenizers, and configuration files from many organizations and developers. |
+| ModelScope       | [modelscope.cn](https://www.modelscope.cn/)            | Discover and download AI models, including language and multimodal models.                                     |
+| Kaggle Models    | [kaggle.com/models](https://www.kaggle.com/models)     | Explore models and use them in notebook-based experiments.                                                     |
+| GitHub           | [github.com](https://github.com/)                      | Find official model repositories, download instructions, inference code, and links to model files.             |
+| Ollama           | [ollama.com/library](https://ollama.com/library)       | Browse models and run supported models locally through Ollama; it manages model downloads for you.             |
+
+
+
 <br/>
 
 ### Open-weight models
@@ -89,6 +138,17 @@ Downloading weights does not automatically provide everything needed for deploym
 An **open-weight model** is a model whose trained weights are made available for use under specified terms. The exact rights and restrictions depend on the applicable license or terms of use.
 
 Open weights can support local experimentation, self-managed deployment, or use through a hosted service. The availability of weights does not require you to run the model yourself.
+
+#### Examples of downloadable open-weight models
+
+| Model name           | Organization   | Model download / information                                       |
+| -------------------- | -------------- | ------------------------------------------------------------------ |
+| GPT-OSS 20B and 120B | OpenAI         | [Official open-model page](https://openai.com/open-models/)        |
+| Llama                | Meta           | [Official Llama website](https://www.llama.com/)                   |
+| Gemma                | Google         | [Kaggle Models](https://www.kaggle.com/models/google/gemma)        |
+| Qwen                 | Alibaba / Qwen | [Hugging Face Qwen models](https://huggingface.co/Qwen)            |
+| DeepSeek models      | DeepSeek       | [Hugging Face DeepSeek models](https://huggingface.co/deepseek-ai) |
+
 
 <br/>
 
